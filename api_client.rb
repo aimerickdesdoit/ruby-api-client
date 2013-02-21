@@ -28,7 +28,11 @@ class ApiClient
     data = self.class.redis.get cache_id
     if data.blank?
       data = yield
-      self.class.redis.setex cache_id, ttl, data.to_json
+      if ttl
+        self.class.redis.setex cache_id, ttl, data.to_json
+      else
+        self.class.redis.set cache_id, data.to_json
+      end
     else
       data = receive_json_data data
     end

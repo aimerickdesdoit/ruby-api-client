@@ -6,6 +6,7 @@ GEM
     activesupport (3.0.0)
     json (1.7.7)
     rack (1.5.2)
+    redis (3.0.2)
 
 PLATFORMS
   ruby
@@ -14,3 +15,4 @@ DEPENDENCIES
   active_support (~> 3.0.0)
   json (~> 1.7.7)
   rack (~> 1.5.2)
+  redis (~> 3.0.2)
