@@ -11,7 +11,7 @@ class ApiClient
   class_attribute :logger
   
   def initialize(domain, options = {})
-    @options = options
+    domain, options = nil, domain if domain.is_a? Hash
     @options = {
       :secure         => false,
       :verify_mode    => OpenSSL::SSL::VERIFY_PEER,
@@ -21,7 +21,8 @@ class ApiClient
       :password       => nil,
       :http_block     => nil,
       :on_setup_request  => nil
-    }.merge(@options)
+    }.merge(options)
+    raise 'domain is undefined' unless @options[:domain]
   end
   
   def cache(cache_id, ttl = nil, &block)
